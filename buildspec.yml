@@ -1,0 +1,20 @@
+version: 0.2
+phases:
+  install:
+    runtime-versions:
+      java: openjdk8
+    commands:
+    - apt-get update -y
+  build:
+    commands:
+      - echo Build started on `date`
+      - ls -l
+      - mvn clean install
+  post_build:
+    commands:
+      - echo Build completed on `date`
+      - cp -r .ebextensions target
+artifacts:
+  files:
+    - '**/*'
+  base-directory: 'target'
